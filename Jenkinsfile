@@ -2,20 +2,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Check Environment') {
+        stage('Checkout') {
             steps {
-                echo 'Привет! Это мой первый пайплайн.'
-                bat 'java -version'
+                echo 'Скачиваем код из GitHub...'
             }
         }
-        stage('Build Step') {
+
+        stage('Test') {
             steps {
-                echo 'Имитация сборки проекта...'
+                echo 'Запускаем автотесты...'
+                bat 'python -m pytest test_app.py || python test_app.py'
             }
         }
-        stage('Test Step') {
+
+        stage('Run App') {
             steps {
-                echo 'Имитация запуска тестов...'
+                echo 'Запускаем саму программу...'
+                bat 'python app.py'
             }
         }
     }
