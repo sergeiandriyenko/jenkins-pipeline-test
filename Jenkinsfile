@@ -5,7 +5,7 @@ pipeline {
         stage('Check Environment') {
             steps {
                 echo 'Привет! Это мой первый пайплайн.'
-                sh 'java -version'
+                bat 'java -version'
             }
         }
         stage('Build Step') {
